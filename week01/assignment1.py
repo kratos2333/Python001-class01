@@ -27,7 +27,6 @@ def crawl_maoyan():
         'Accept-Language': 'en-AU,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,la;q=0.6',
         'Content-Type': 'text/plain',
         'Connection': 'keep-alive',
-        # 'Host': 'wreport1.meituan.net',
         'Origin': 'https://maoyan.com',
         'Referer': 'https://maoyan.com/films?showType=3',
         'Sec-Fetch-Dest': 'empty',
