@@ -32,6 +32,7 @@ def crawl_maoyan():
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'cross-site',
+        'COOKIES': '9BC88680B61511EA801551553EAD9849CFABF5DDC2EE41B891FB0381008CF57B'
     }
 
     response = requests.get(REQUEST_URL, headers=HEADER)
@@ -40,7 +41,8 @@ def crawl_maoyan():
     bs_finder = bs(response.text, 'html.parser')
 
     movie_dict = {'movie_title': [], 'movie_type': [], 'release_date': []}
-    for movies in bs_finder.findAll('div', attrs={'class': 'movie-item film-channel'}):
+    # first 10 movies
+    for movies in bs_finder.findAll('div', attrs={'class': 'movie-item film-channel'})[:10]:
 
         # Get movie title, type, release_date
         info_list = movies.findAll('div', attrs={'class': 'movie-hover-title'})
@@ -52,9 +54,7 @@ def crawl_maoyan():
         movie_dict['movie_type'].append(movie_type)
         movie_dict['release_date'].append(release_date)
 
-        # stop crawling
-        if (len(movie_dict['movie_title']) == 10):
-            return movie_dict
+    return movie_dict
 
 if __name__ == '__main__':
     movieDF = pd.DataFrame(data=crawl_maoyan())
