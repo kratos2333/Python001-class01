@@ -11,7 +11,7 @@ class Assignment2Pipeline:
         movie_title = item['movie_title']
         movie_type = item['movie_type']
         release_date = item['release_date']
-        output = str(movie_title) + '\t' + str(movie_type) + '\t' + str(release_date) + '\n'
+        output = str(movie_title) + ',' + str(movie_type) + ',' + str(release_date) + '\n'
         with open('./movie.csv','a+', encoding='UTF-8') as file:
             file.write(output)
         return item

@@ -23,7 +23,7 @@ def crawl_maoyan():
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'cross-site',
-        'COOKIES': '15BB0FD0B69311EA9B3075693A212BAFAD6D26C3EC524AC9AF0FB5604380B7E5'
+        'COOKIES': 'DA3E2700B7A311EA9C0AF732B1940F47F294C8C0EB1942E9B2D46FE7B0536BD9'
     }
 
     response = requests.get(REQUEST_URL, headers=HEADER)
@@ -49,4 +49,4 @@ def crawl_maoyan():
 
 if __name__ == '__main__':
     movieDF = pd.DataFrame(data=crawl_maoyan())
-    movieDF.to_csv('./movie.csv', sep='\t', encoding='utf-8', index=False, header=True)
+    movieDF.to_csv('./movie.csv', sep=',', encoding='utf-8', index=False, header=True)
