@@ -293,6 +293,22 @@ class DoubanmoviePipeline:
         return item
 ```
 ### 拓展
+Scrapy 默认是会过滤掉重复的url如果想要request重复url需要在scrapy.Request添加dont_filter=False
+``` 
+import scrapy
+
+class ExampleSpider(scrapy.Spider):
+    name = "dmoz"
+    allowed_domains = ["https://www.dmoz.org"]
+    start_urls = ('https://www.dmoz.org/')
+
+    def parse(self,response):
+        yield scrapy.Request(self.start_urls[0],callback=self.parse2,dont_filter=False)
+
+    def parse2(self, response):
+        print(response.url)
+```
+
 settings.py可以设置随机选取USER_AGENT以更好的模拟浏览器
 ``` 
 USER_AGENT_LIST=[
