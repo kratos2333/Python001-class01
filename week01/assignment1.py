@@ -8,16 +8,7 @@ from bs4 import BeautifulSoup as bs
 安装并使用 requests、bs4 库，爬取猫眼电影的前 10 个电影名称、电影类型和上映时间，并以 UTF-8 字符集保存到 csv 格式的文件中。
 '''
 
-
 def crawl_maoyan():
-    #########################################################################
-    # local test only
-    # local_html_path = 'C:\\Users\\kevin\\OneDrive\\Desktop\\mapyan.html'
-    # htmlfile = open(local_html_path, 'r', encoding='utf-8')
-    # htmlhandle = htmlfile.read()
-    # bs_finder = bs(htmlhandle, 'lxml')
-    #########################################################################
-
     # Fetch the html contents from REQUEST_URL
     REQUEST_URL = 'http://maoyan.com/films?showType=3'
     HEADER = {
@@ -32,7 +23,7 @@ def crawl_maoyan():
         'Sec-Fetch-Dest': 'empty',
         'Sec-Fetch-Mode': 'cors',
         'Sec-Fetch-Site': 'cross-site',
-        'COOKIES': '9BC88680B61511EA801551553EAD9849CFABF5DDC2EE41B891FB0381008CF57B'
+        'COOKIES': '15BB0FD0B69311EA9B3075693A212BAFAD6D26C3EC524AC9AF0FB5604380B7E5'
     }
 
     response = requests.get(REQUEST_URL, headers=HEADER)
@@ -43,7 +34,6 @@ def crawl_maoyan():
     movie_dict = {'movie_title': [], 'movie_type': [], 'release_date': []}
     # first 10 movies
     for movies in bs_finder.findAll('div', attrs={'class': 'movie-item film-channel'})[:10]:
-
         # Get movie title, type, release_date
         info_list = movies.findAll('div', attrs={'class': 'movie-hover-title'})
         movie_title = info_list[0].get('title')
@@ -55,6 +45,7 @@ def crawl_maoyan():
         movie_dict['release_date'].append(release_date)
 
     return movie_dict
+
 
 if __name__ == '__main__':
     movieDF = pd.DataFrame(data=crawl_maoyan())
