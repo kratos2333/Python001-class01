@@ -89,6 +89,16 @@ for page in urls:
 ### 拓展
 beautifulsoup的findall会找到所有相关元素，比如bs_info.find_all('div', attrs={'class': 'a'})会找到所有class带hd的div元素，也就是说class="a b"的div元素也会被找到
 
+本地测试(在别无他法情况下使用)
+``` 
+...
+local_html_path = 'C:\\Users\\kevin\\OneDrive\\Desktop\\mapyan.html'
+htmlfile = open(local_html_path, 'r', encoding='utf-8')
+htmlhandle = htmlfile.read()
+bs_finder = bs(htmlhandle, 'lxml')
+...
+```
+
 ## 3. 使用lxml通过xpath解析页面
 单一元素的xpath可以通过chrome浏览器devtool里右键该元素获取。
 
