@@ -26,7 +26,6 @@ class UserInputError(Exception):
         return self.errorinfo
 
 userinput = 'a'
-
 try:
     if (not userinput.isdigit()):
         raise UserInputError('用户输入错误')
