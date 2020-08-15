@@ -44,7 +44,7 @@ def timer(time_out):
             end = time.perf_counter()
             exe_time = end - start
 
-            return f'function finished in {end-start} secs' if exe_time < time_out else 'time out'
+            return f'function finished in {exe_time} secs' if exe_time < time_out else 'time out'
         return inner
     return timer
 
